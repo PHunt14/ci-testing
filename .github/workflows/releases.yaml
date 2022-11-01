@@ -4,26 +4,26 @@ on:
     types: [published]
 jobs:
   hello:
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v3
-    # - uses: actions/setup-node@v3
-    #     with:
-    #       node-version: 18.11.0
-    - name: move things to be compressed
-      run: mkdir toCompress/dist; cp test_file_2.txt toCompress; cp -r foo/bar/*.js toCompress/dist
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # - uses: actions/setup-node@v3
+      #     with:
+      #       node-version: 18.11.0
+      - name: move things to be compressed
+        run: mkdir toCompress/dist; cp test_file_2.txt toCompress; cp -r foo/bar/*.js toCompress/dist
 
-    - name: package tagged artifacts
-      uses: a7ul/tar-action@v1.1.2
-      id: compress
-      with:
-        command: c
-        cwd: .
-        files: |
-          ./toCompress
-        outPath: ${{ github.event.release.tag_name }}-${{ github.event.repository.updated_at }}.tar.gz
-    
-    - name: uploade Release tar as Artifact
-      uses: actions/upload-artifacts@v3
-      with: ${{ github.event.release.tag_name }}-${{ github.event.repository.updated_at }}.tar.gz
-      path: ${{ github.event.release.tag_name }}-${{ github.event.repository.updated_at }}.tar.gz
+      - name: package tagged artifacts
+        uses: a7ul/tar-action@v1.1.2
+        id: compress
+        with:
+          command: c
+          cwd: .
+          files: |
+            ./toCompress
+          outPath: ${{ github.event.release.tag_name }}-${{ github.event.repository.updated_at }}.tar.gz
+      
+      - name: uploade Release tar as Artifact
+        uses: actions/upload-artifacts@v3
+        with: ${{ github.event.release.tag_name }}-${{ github.event.repository.updated_at }}.tar.gz
+        path: ${{ github.event.release.tag_name }}-${{ github.event.repository.updated_at }}.tar.gz
