@@ -26,5 +26,4 @@ jobs:
       - name: uploade Release tar as Artifact
         uses: actions/upload-artifacts@v3
         with: 
-          name: ${{ github.event.release.tag_name }}-${{ github.event.repository.updated_at }}.tar.gz
           path: ${{ github.event.release.tag_name }}-${{ github.event.repository.updated_at }}.tar.gz
