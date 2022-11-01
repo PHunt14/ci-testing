@@ -25,3 +25,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with: 
           path: ${{ github.event.release.tag_name }}.tar.gz
+          name: ${{ github.event.release.tag_name }}.tar.gz
