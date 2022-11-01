@@ -1,4 +1,4 @@
-name: pull request CI
+name: releases CI
 on:
   release:
     types: [published]
