@@ -3,7 +3,10 @@ name: Release with commit
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "v[0-9]+.[0-9]+.[0-9]+[-]?[beta]?[alpha]?[rc]?"
+      - "v[0-9]+.[0-9]+.[0-9]+-beta"
+      - "v[0-9]+.[0-9]+.[0-9]+-alpha"
+      - "v[0-9]+.[0-9]+.[0-9]+-rc"
 
 jobs:
   release-pipeline:
