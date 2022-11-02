@@ -2,6 +2,7 @@ name: Release with commit
 
 on:
   tags:
+    - '**'
 
 jobs:
   release-pipeline:
