@@ -1,8 +1,9 @@
 name: Release with commit
 
 on:
-  tags:
-    - '**'
+  push:
+    tags:
+      - '**'
 
 jobs:
   release-pipeline:
