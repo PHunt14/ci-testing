@@ -1,8 +1,7 @@
 name: Release with commit
 
 on:
-  push:
-    tags:
+  tags:
 
 jobs:
   release-pipeline:
