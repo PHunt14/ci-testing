@@ -23,8 +23,14 @@ jobs:
           files: |
             ./toCompress
           outPath: ${{ github.ref_name }}.tar.gz
+
+      - name: package helm chart
+        run: helm package anvil/ -d deploy/helm/
+
       # create a release with the tar as a file
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ${{ github.ref_name }}.tar.gz
+          files: |
+            ${{ github.ref_name }}.tar.gz
+            deploy/helm/anvil*.tgz
