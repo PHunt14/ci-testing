@@ -2,20 +2,29 @@ name: Release with commit
 
 on:
   push:
-    branches:
-      - release
+    tags:
+      - "v*.*.*"
+
 jobs:
-  release:
+  release-pipeline:
     runs-on: ubuntu-latest
     steps:
-      - uses: ChanTsune/release-with-commit@v2.7.0
+      - name: Checkout
+        uses: actions/checkout@v2
+      # "Build" the files
+      - name: prepare files to be compresses
+        run: mkdir -p toCompress/dist; cp test_file_1.txt toCompress; cp test_file_3.txt toCompress; cp foo/bar/*.ts toCompress/dist
+      # tar the files
+      - name: tar the files
+        uses: a7ul/tar-action@v1.1.0
+        id: compress
         with:
-          regexp: "Release ((\\d+([.]\\d+)*)-(alpha|beta|rc)\\d*)((\\s|\\S)*)"
-          regexp_options: "us"
-          release_name: "version $1"
-          tag_name: "v$1"
-          body: "$5"
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: '${{secrets.GITHUB_TOKEN}}'
+          command: c
+          files: |
+            ./toCompress
+          outPath: ${{ github.ref_name }}.tar.gz
+      # create a release with the tar as a file
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ github.ref_name }}.tar.gz
