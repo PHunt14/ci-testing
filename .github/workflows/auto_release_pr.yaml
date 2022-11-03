@@ -38,5 +38,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ${{ github.ref_name }}.tgz
+            ci-${{ github.ref_name }}.tgz
             deploy/helm/anvil*.tgz
