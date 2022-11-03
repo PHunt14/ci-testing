@@ -28,7 +28,7 @@ jobs:
           cwd: toCompress/
           files: |
             ci-${{ github.ref_name }}
-          outPath: ci-${{ github.ref_name }}.tgz
+          outPath: /ci-${{ github.ref_name }}.tgz
 
       - name: package helm chart
         run: helm package anvil/ -d deploy/helm/
