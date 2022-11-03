@@ -27,7 +27,7 @@ jobs:
           command: c
           cwd: toCompress/
           files: |
-            ci-./${{ github.ref_name }}
+            ci-${{ github.ref_name }}
           outPath: ci-${{ github.ref_name }}.tgz
 
       - name: package helm chart
