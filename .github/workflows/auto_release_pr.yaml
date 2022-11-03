@@ -28,7 +28,7 @@ jobs:
           cwd: toCompress/
           files: |
             ci-${{ github.ref_name }}
-          outPath: /ci-${{ github.ref_name }}.tgz
+          outPath: ci-${{ github.ref_name }}.tgz
 
       - name: package helm chart
         run: helm package anvil/ -d deploy/helm/
@@ -38,5 +38,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ci-${{ github.ref_name }}.tgz
+            toCompress/ci-${{ github.ref_name }}.tgz
             deploy/helm/anvil*.tgz
