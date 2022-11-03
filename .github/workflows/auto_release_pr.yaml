@@ -14,21 +14,21 @@ jobs:
       # "Build" the files
       - name: prepare files to be compresses
         run: |
-          mkdir -p release/dist
-          cp test_file_1.txt release
-          cp test_file_3.txt release
-          cp foo/bar/*.ts release/dist
-
+          mkdir -p toCompress/ci-${{ github.ref_name }}/dist
+          cp test_file_1.txt toCompress/ci-${{ github.ref_name }}
+          cp test_file_3.txt toCompress/ci-${{ github.ref_name }}
+          cp foo/bar/*.ts toCompress/ci-${{ github.ref_name }}/dist
+          
       # tar the files
       - name: tar the files
         uses: a7ul/tar-action@v1.1.0
         id: compress
         with:
           command: c
-          cwd: release
+          cwd: toCompress/
           files: |
-            *
-          outPath: ${{ github.ref_name }}.tgz
+            ci-./${{ github.ref_name }}
+          outPath: ci-${{ github.ref_name }}.tgz
 
       - name: package helm chart
         run: helm package anvil/ -d deploy/helm/
