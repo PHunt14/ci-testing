@@ -1,8 +1,9 @@
 name: pull request CI
-on: pull_request
-  paths:
-    - '**'
-    - '!deploy/helm/**'
+on: 
+  pull_request:
+    paths:
+      - '**'
+      - '!deploy/helm/**'
 
 jobs:
   hello:
