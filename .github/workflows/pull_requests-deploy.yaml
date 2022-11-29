@@ -1,5 +1,5 @@
-name: pull request CI
-on: pull_request_deploy
+name: pull request deploy CI
+on: pull_request
 
 jobs:
   deploy-dir:
