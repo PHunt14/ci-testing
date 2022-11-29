@@ -1,5 +1,7 @@
 name: pull request deploy CI
 on: pull_request
+  paths:
+    - 'deploy/helm/**'
 
 jobs:
   deploy-dir:
