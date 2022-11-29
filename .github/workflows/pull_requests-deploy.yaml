@@ -2,7 +2,7 @@ name: pull request deploy CI
 on: 
   pull_request:
     paths:
-      - 'deploy/helm/**'
+    - 'deploy/helm/**'
 
 jobs:
   deploy-dir:
@@ -24,5 +24,5 @@ jobs:
       #     with:
       #       node-version: 18.11.0
       - name: run command
-        if: steps.changed-files.outputs.only_modified == 'true'
+        # if: steps.changed-files.outputs.only_modified == 'true'
         run: echo "no deploy"
