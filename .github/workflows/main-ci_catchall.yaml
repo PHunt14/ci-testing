@@ -2,8 +2,7 @@ name: pull request CI
 on: 
   pull_request:
     paths:
-    - '**'
-    - '!deploy/helm/**'
+    - 'deploy/helm/**'
 
 jobs:
   hello:
@@ -14,4 +13,4 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: run command
-        run: echo "no deploy, but this would still execute a check"
+        run: echo "deploy, but I need this check to pass anyway, at least in name"
