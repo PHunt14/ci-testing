@@ -2,7 +2,8 @@ name: Helm CI
 on: 
   pull_request:
     paths:
-    - 'deploy/helm/**'
+    - '**'
+    - '!deploy/helm/**'
 
 jobs:
   deploy-dir:
