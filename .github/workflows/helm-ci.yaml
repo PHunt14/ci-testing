@@ -1,0 +1,16 @@
+name: Helm CI
+on: 
+  pull_request:
+    paths:
+    - 'deploy/helm/**'
+
+jobs:
+  deploy-dir:
+    runs-on: ubuntu-latest
+    steps:
+
+
+      - uses: actions/checkout@v3
+
+      - name: run command
+        run: echo "no deploy"
